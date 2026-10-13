@@ -1,0 +1,315 @@
+/* ============================================================
+   Football Analytics Dashboard — Modern Dark/Green Theme
+   Tested against Streamlit 1.51
+   ============================================================ */
+
+/* ── CSS Variables ───────────────────────────────────────── */
+:root {
+    --bg:        #0d1117;
+    --surface:   #161b22;
+    --surface2:  #1c2128;
+    --border:    #30363d;
+    --green:     #2ea043;
+    --green-dim: #1a4a25;
+    --blue:      #58a6ff;
+    --orange:    #f0883e;
+    --red:       #f85149;
+    --text:      #e6edf3;
+    --muted:     #8b949e;
+    --radius:    10px;
+}
+
+/* ── App shell backgrounds ───────────────────────────────── */
+.stApp,
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+[data-testid="stMainBlockContainer"],
+.main .block-container,
+section.main > div {
+    background-color: var(--bg) !important;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+[data-testid="stSidebar"],
+[data-testid="stSidebar"] > div {
+    background-color: var(--surface) !important;
+    border-right: 1px solid var(--border) !important;
+}
+
+/* Sidebar top nav (page links) */
+[data-testid="stSidebarNav"] {
+    background-color: var(--surface) !important;
+}
+
+[data-testid="stSidebarNav"] a {
+    color: var(--muted) !important;
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    font-size: 0.9rem !important;
+    transition: background 0.15s, color 0.15s !important;
+}
+
+[data-testid="stSidebarNav"] a:hover,
+[data-testid="stSidebarNav"] a[aria-current="page"] {
+    background-color: var(--green-dim) !important;
+    color: var(--green) !important;
+}
+
+/* ── Global text ─────────────────────────────────────────── */
+html, body, .stApp, p, span, label, div {
+    color: var(--text) !important;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif !important;
+}
+
+/* ── Headings ────────────────────────────────────────────── */
+h1 {
+    color: #ffffff !important;
+    font-size: 1.9rem !important;
+    font-weight: 700 !important;
+    border-bottom: 3px solid var(--green) !important;
+    padding-bottom: 0.4em !important;
+    margin-bottom: 1rem !important;
+    letter-spacing: -0.02em !important;
+}
+
+h2 {
+    color: #ffffff !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
+    margin-top: 0.5rem !important;
+}
+
+h3 {
+    color: var(--text) !important;
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+}
+
+/* ── Sidebar brand heading ───────────────────────────────── */
+[data-testid="stSidebar"] h2 {
+    color: var(--green) !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+    padding: 0.2rem 0 !important;
+}
+
+/* ── Metric cards ────────────────────────────────────────── */
+[data-testid="stMetric"],
+[data-testid="metric-container"] {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%) !important;
+    border: 1px solid var(--border) !important;
+    border-left: 4px solid var(--green) !important;
+    border-radius: var(--radius) !important;
+    padding: 1.1rem 1.2rem !important;
+    transition: border-color 0.2s !important;
+}
+
+[data-testid="stMetric"]:hover,
+[data-testid="metric-container"]:hover {
+    border-left-color: #3fb950 !important;
+    border-color: var(--green) !important;
+}
+
+[data-testid="stMetricLabel"] > div,
+[data-testid="stMetricLabel"] label,
+[data-testid="metric-container"] label {
+    color: var(--muted) !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.07em !important;
+}
+
+[data-testid="stMetricValue"] > div,
+[data-testid="stMetricValue"],
+[data-testid="metric-container"] [data-testid="stMetricValue"] {
+    color: var(--green) !important;
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+}
+
+/* ── Input widgets ───────────────────────────────────────── */
+/* Multiselect container */
+[data-testid="stMultiSelect"] > div > div,
+[data-baseweb="select"] > div {
+    background-color: var(--surface2) !important;
+    border-color: var(--border) !important;
+    border-radius: 8px !important;
+}
+
+/* Selectbox container */
+[data-testid="stSelectbox"] > div > div,
+[data-baseweb="select"] {
+    background-color: var(--surface2) !important;
+    border-radius: 8px !important;
+}
+
+/* Dropdown popup */
+[data-baseweb="popover"],
+[data-baseweb="menu"],
+ul[data-baseweb="menu"] {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+}
+
+[data-baseweb="menu"] li:hover,
+[data-baseweb="option"]:hover {
+    background-color: var(--green-dim) !important;
+}
+
+/* Selected tag / pill inside multiselect */
+[data-baseweb="tag"] {
+    background-color: var(--green-dim) !important;
+    border: 1px solid var(--green) !important;
+    border-radius: 6px !important;
+}
+
+[data-baseweb="tag"] span {
+    color: var(--green) !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+}
+
+/* Tag remove X button */
+[data-baseweb="tag"] [role="button"],
+[data-baseweb="tag"] svg {
+    color: var(--green) !important;
+    fill: var(--green) !important;
+}
+
+/* Text inside selectbox/multiselect input */
+[data-baseweb="select"] input,
+[data-baseweb="select"] [data-testid="stSelectboxPlaceholder"] {
+    color: var(--text) !important;
+}
+
+/* Text input */
+[data-testid="stTextInput"] input {
+    background-color: var(--surface2) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+    color: var(--text) !important;
+    padding: 0.5rem 0.75rem !important;
+}
+
+[data-testid="stTextInput"] input:focus {
+    border-color: var(--green) !important;
+    box-shadow: 0 0 0 2px rgba(46, 160, 67, 0.25) !important;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+[data-testid="stDownloadButton"] > button {
+    background-color: var(--green) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    padding: 0.5rem 1.2rem !important;
+    transition: background-color 0.2s, transform 0.1s !important;
+}
+
+[data-testid="stDownloadButton"] > button:hover {
+    background-color: #3fb950 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ── Tabs ────────────────────────────────────────────────── */
+[data-testid="stTabs"] [data-baseweb="tab-list"] {
+    background-color: var(--surface) !important;
+    border-radius: var(--radius) var(--radius) 0 0 !important;
+    border-bottom: 1px solid var(--border) !important;
+    gap: 4px !important;
+    padding: 6px 8px 0 !important;
+}
+
+[data-testid="stTabs"] [data-baseweb="tab"] {
+    background-color: transparent !important;
+    color: var(--muted) !important;
+    border-radius: 6px 6px 0 0 !important;
+    font-weight: 500 !important;
+    font-size: 0.88rem !important;
+    padding: 8px 18px !important;
+    border-bottom: 3px solid transparent !important;
+    transition: color 0.15s, border-color 0.15s !important;
+}
+
+[data-testid="stTabs"] [aria-selected="true"][data-baseweb="tab"] {
+    color: var(--green) !important;
+    border-bottom: 3px solid var(--green) !important;
+    background-color: var(--green-dim) !important;
+}
+
+[data-testid="stTabs"] [data-baseweb="tab"]:hover {
+    color: var(--text) !important;
+    background-color: var(--surface2) !important;
+}
+
+[data-testid="stTabsContent"],
+[data-baseweb="tab-panel"] {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-top: none !important;
+    border-radius: 0 0 var(--radius) var(--radius) !important;
+    padding: 1rem !important;
+}
+
+/* ── Dataframe / Table ───────────────────────────────────── */
+[data-testid="stDataFrame"],
+[data-testid="stDataFrameGlideDataEditor"] {
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+}
+
+/* ── Alert boxes ─────────────────────────────────────────── */
+[data-testid="stAlert"] {
+    border-radius: 8px !important;
+    border-left-width: 4px !important;
+}
+
+/* ── Dividers ────────────────────────────────────────────── */
+hr {
+    border: none !important;
+    border-top: 1px solid var(--border) !important;
+    margin: 1.5rem 0 !important;
+}
+
+/* ── Captions / help text ────────────────────────────────── */
+[data-testid="stCaptionContainer"],
+.stCaption, small {
+    color: var(--muted) !important;
+    font-size: 0.78rem !important;
+}
+
+/* ── Page nav section headers in sidebar ─────────────────── */
+[data-testid="stSidebarNavSeparator"],
+[data-testid="stSidebarNavItems"] > div > span {
+    color: var(--muted) !important;
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--green); }
+
+/* ── Plotly chart containers ─────────────────────────────── */
+[data-testid="stPlotlyChart"] {
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* ── Block/section spacing ───────────────────────────────── */
+[data-testid="stMainBlockContainer"] {
+    padding-top: 1.5rem !important;
+    padding-bottom: 2rem !important;
+}
